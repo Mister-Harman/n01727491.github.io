@@ -1,0 +1,71 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+}
+
+header{
+    margin-bottom: 30px;
+}
+
+img{
+    float: left;
+}
+
+h1{
+    font-size: x-large;
+    padding-left: 2.7cm;
+    color: orange;
+    font-style: italic;
+    text-shadow: 2px 2px black;
+}
+
+h2{
+    font-size: 18px;
+    padding-left: 2.7cm;
+    margin-top: 1cm;
+}
+
+h3{
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+
+h4{
+    font-size: 18px;
+    margin-top: 7px;
+    margin-bottom: 4.5px;
+}
+
+p{
+    margin-top: 0px;
+}
+
+span{
+    font-size: 45px;
+}
+
+.links{
+    font-weight: bold;
+    color: orange;
+}
+
+a:hover{
+    color: green;
+}
+
+a:focus{
+    color: green;
+}
+
+li{
+    padding-bottom: 4px;
+}
+
+#gap{
+    margin-top: 0.35cm;
+}
+
+footer{
+    font-size: small;
+    text-align: center;
+}
