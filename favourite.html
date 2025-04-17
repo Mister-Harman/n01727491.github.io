@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites - La Musique</title>
+    <link rel="stylesheet" href="styles/style_otherpages.css">
+    <style>
+        /* styling for page is done inside the html file */
+        .favorites-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-text {
+            color: #e7a375;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        #favorites-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .song-card {
+            background-color: #282828;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .song-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .song-details {
+            position: relative;
+        }
+        
+        .song-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: rgb(56, 22, 22);
+            font-size: 1.5rem;
+        }
+        
+        .song-artist {
+            color: #0f0000;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .song-message {
+            color: #f25c5c;
+            font-size: 0.85rem;
+            margin: 0.8rem 0;
+            overflow: hidden;
+            display: -webkit-box;
+        }
+        
+        .btn {
+            background-color: #ED6A5A;
+            color: rgb(9, 9, 9);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            margin-top: 0.5rem;
+        }
+        
+        .btn:hover {
+            box-shadow: 0 0 10px #FF7A6A;
+        }
+        
+        .btn-remove {
+            background-color: #e74c3c;
+        }
+        
+        .btn-remove:hover {
+            background-color: #c0392b;
+        }
+
+        .add-favorite-form h3{
+            color: #F4F1BB;
+        }
+
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background-color: #282828;
+            border-radius: 8px;
+            grid-column: 1 / -1;
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 1rem;
+            color: #f64e06;
+        }
+
+        .empty-state p{
+            color: #F4F1BB;
+        }
+        
+        .add-favorite-form {
+            background-color: #282828;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .add-favorite-form h3{
+            color: #ED6A5A;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #0d0808;
+            font-size: 1.5rem;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #444;
+            background-color: #191414;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .word-count {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: right;
+            margin-top: 0.2rem;
+        }
+        
+        .word-count.warning {
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            #favorites-list {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            
+            .page-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    
+        /* to style the pop-up menu */
+        #shortcut-menu {
+                position: fixed;
+                z-index: 1000;
+                width: 200px;
+                background: white;
+                border: 1px solid #ccc;
+
+                border-radius: 3px;
+                display: none;
+            }
+            
+            #shortcut-menu ul {
+                list-style: none;
+                margin: 0;
+                padding: 2%;
+            }
+            
+            #shortcut-menu ul li {
+                padding: 10px 15px;
+                cursor: pointer;
+                border-bottom: 1px solid #eee;
+            }
+            
+            #shortcut-menu ul li:last-child {
+                border-bottom: none;
+            }
+            
+            #shortcut-menu ul li:hover {
+                background-color: #f79c90;
+            }
+        
+        .light-readable-mode .page-title, .light-readable-mode .info-text{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- to make the head navigation -->
+        <nav>
+            <ul>
+                <li id="home" class="navigation"><a class="link" href="index.html">Home</a></li>
+                <li id="topchart" class="navigation"><a class="link" href="topcharts.html">Top Charts</a></li>
+                <li id="music" class="navigation"><a class="link" href="music.html">Music</a></li>
+                <li id="artist" class="navigation"><a class="link" href="artist.html">Artists</a></li>
+                <li id="search" class="navigation"><a class="link" href="search.html">Search</a></li>
+                <li id="search" class="navigation"><a class="link active" href="favourite.html">Favourite List</a></li>
+                <li id="aboutus" class="navigation"><a class="link" href="aboutus.html">Contact us</a></li>
+            </ul>
+        </nav>
+        <a href="index.html"><img id="logo" src="img/logo.webp" alt="logo of la musique"></a>
+        <h1>La Musique</h1>
+    </header>
+    <!-- the main heading -->
+    <main class="favorites-container">
+        <div class="page-title">
+            <h2>My Favorite Songs</h2>
+            <button id="clear-all" class="btn btn-remove">Clear All</button>
+        </div>
+        
+        <p class="info-text">Your collection of favorite songs with personal notes (limited to 20 most recently added).</p>
+        <!-- form to add the songs -->
+        <div class="add-favorite-form">
+            <h3>Add New Favorite</h3>
+            <div class="form-group">
+                <label for="song-title">Song Title</label>
+                <input type="text" id="song-title" placeholder="Enter song title" required>
+            </div>
+            <div class="form-group">
+                <label for="song-artist">Artist</label>
+                <input type="text" id="song-artist" placeholder="Enter artist name" required>
+            </div>
+            <div class="form-group">
+                <label for="song-message">Your Message (max 100 words)</label>
+                <textarea id="song-message" placeholder="Add your personal note about this song"></textarea>
+                <div id="word-counter" class="word-count">0/100 words</div>
+            </div>
+            <button id="add-favorite" class="btn">Add to Favorites</button>
+        </div>
+
+        <div id="favorites-list">
+            <!-- Favorite songs will be displayed here -->
+        </div>
+    </main>
+    <!-- to make the pop-up menu -->
+    <div id="shortcut-menu">
+        <ul>
+            <li id="option5">Home</li>
+            <li id="option1">Top charts</li>
+            <li id="option2">Music</li>
+            <li id="option3">Artists</li>
+            <li id="option4">Accessibility</li>
+        </ul>
+    </div> 
+    <footer>
+        <p id="cprt">copyright @ THE 3</p>
+        <a href="creditsandreferences.html">credits and references</a>
+    </footer>
+
+    <script>
+        // JavaScript for the pop-up menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const customMenu = document.getElementById('shortcut-menu');
+            
+            // Track if Alt key is pressed
+            let isAltPressed = false;
+            
+            // Listen for Alt key press and release
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Alt') {
+                    isAltPressed = true;
+                }
+            });
+            
+            document.addEventListener('keyup', function(e) {
+                if (e.key === 'Alt') {
+                    isAltPressed = false;
+                }
+            });
+            
+            // Custom context menu on Alt + right-click
+            document.addEventListener('contextmenu', function(e) {
+                if (isAltPressed) {
+                    e.preventDefault(); // Prevent the default context menu
+                    
+                    // Position the custom menu at the mouse position
+                    customMenu.style.display = 'block';
+                    customMenu.style.left = e.clientX + 'px';
+                    customMenu.style.top = e.clientY + 'px';
+                }
+            });
+
+        
+            
+            // Hide menu when clicking elsewhere
+            document.addEventListener('click', function() {
+                customMenu.style.display = 'none';
+            });
+            
+            // Handle menu item clicks
+            document.getElementById('option1').addEventListener('click', function() {
+                window.location.href = 'topcharts.html';
+                customMenu.style.display = 'none';
+            });
+            
+            document.getElementById('option2').addEventListener('click', function() {
+                window.location.href = 'music.html';
+                customMenu.style.display = 'none';
+            });
+            
+            document.getElementById('option3').addEventListener('click', function() {
+                window.location.href = 'artist.html';
+                customMenu.style.display = 'none';
+            });
+            
+            document.getElementById('option4').addEventListener('click', function() {
+                document.body.classList.toggle('light-readable-mode');
+                customMenu.style.display = 'none';
+            });
+
+            document.getElementById('option5').addEventListener('click', function() {
+                window.location.href = 'index.html';
+                customMenu.style.display = 'none';
+            });
+        });
+    </script>
+    <script src="javascript/favourite.js"></script>
+</body>
+</html>

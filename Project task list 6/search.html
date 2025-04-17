@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>La Musique - Search</title>
+    <link rel="stylesheet" href="styles/style_otherpages.css">
+    <style>
+        #shortcut-menu {
+            position: fixed;
+            z-index: 1000;
+            width: 200px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+            display: none;
+        }
+        
+        #shortcut-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #shortcut-menu ul li {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        
+        #shortcut-menu ul li:last-child {
+            border-bottom: none;
+        }
+        
+        #shortcut-menu ul li:hover {
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li id="home" class="navigation"><a class="link" href="index.html">Home</a></li>
+                <li id="topchart" class="navigation"><a class="link" href="topcharts.html">Top Charts</a></li>
+                <li id="music" class="navigation"><a class="link" href="music.html">Music</a></li>
+                <li id="artist" class="navigation"><a class="link" href="artist.html">Artists</a></li>
+                <li id="aboutus" class="navigation"><a class="link" href="aboutus.html">Contact us</a></li>
+                <li id="search" class="navigation"><a class="link" href="search.html">Search</a></li>
+            </ul>
+        </nav>
+        <a href="index.html"><img id="logo" src="img/logo.webp"></a>
+        <h1>La Musique</h1>
+    </header>
+    <main>
+        <h2>Spotify Search</h2>
+        <div>
+            <select id="filter">
+                <option value="artist">Artist</option>
+                <option value="track">Track</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Enter search query">
+            <button id="searchButton" onclick="search()">Search</button>
+        </div>
+      
+        <div id="results"></div>
+    </main>
+    <div id="shortcut-menu">
+        <ul>
+            <li id="option1">Home</li>
+            <li id="option4">Top Charts</li>
+            <li id="option2">Music</li>
+            <li id="option3">Artists</li>
+        </ul>
+    </div>
+    <footer>
+        <p id="cprt">copyright @ THE 3</p>
+        <a href="h">credits and references</a>
+    </footer>
+    <script src="javascript/search.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const customMenu = document.getElementById('shortcut-menu');
+            
+            // Track if Alt key is pressed
+            let isAltPressed = false;
+            
+            // Listen for Alt key press and release
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Alt') {
+                    isAltPressed = true;
+                }
+            });
+            
+            document.addEventListener('keyup', function(e) {
+                if (e.key === 'Alt') {
+                    isAltPressed = false;
+                }
+            });
+            
+            // Custom context menu on Alt + right-click
+            document.addEventListener('contextmenu', function(e) {
+                if (isAltPressed) {
+                    e.preventDefault(); // Prevent the default context menu
+                    
+                    // Position the custom menu at the mouse position
+                    customMenu.style.display = 'block';
+                    customMenu.style.left = e.pageX + 'px';
+                    customMenu.style.top = e.pageY + 'px';
+                }
+            });
+            
+            // Hide menu when clicking elsewhere
+            document.addEventListener('click', function() {
+                customMenu.style.display = 'none';
+            });
+            
+            // Handle menu item clicks
+            document.getElementById('option1').addEventListener('click', function() {
+                window.location.href = 'index.html';
+                customMenu.style.display = 'none';
+            });
+            
+            document.getElementById('option2').addEventListener('click', function() {
+                window.location.href = 'topcharts.html';
+                customMenu.style.display = 'none';
+            });
+            
+            document.getElementById('option3').addEventListener('click', function() {
+                window.location.href = 'music.html';
+                customMenu.style.display = 'none';
+            });
+            
+            document.getElementById('option4').addEventListener('click', function() {
+                window.location.href = 'artist.html';
+                customMenu.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

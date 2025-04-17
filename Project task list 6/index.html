@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>La musique</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel = "stylesheet" href = "styles/normalize.css">
+        <link rel = "stylesheet" href = "styles/style.css">
+        <style>
+            #shortcut-menu {
+                position: fixed;
+                z-index: 1000;
+                width: 200px;
+                background: white;
+                border: 1px solid #ccc;
+
+                border-radius: 3px;
+                display: none;
+            }
+            
+            #shortcut-menu ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            #shortcut-menu ul li {
+                padding: 10px 15px;
+                cursor: pointer;
+                border-bottom: 1px solid #eee;
+            }
+            
+            #shortcut-menu ul li:last-child {
+                border-bottom: none;
+            }
+            
+            #shortcut-menu ul li:hover {
+                background-color: bisque;
+            }
+
+            #message p{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                border: 10px ridge white;
+                background-color: bisque;
+                font-weight: 5em;
+                z-index: 4000;
+                opacity: 1;
+                color: rgb(230, 83, 83);
+                padding: 2% 2% 2% 2%;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li id = "home" class = "navigation"><a class = "link" href="">Home</a></li>
+                    <li id = "topchart" class = "navigation"><a class = "link" href="topcharts.html">Top Charts</a></li>
+                    <li id = "music" class = "navigation"><a class = "link" href="music.html">Music</a></li>
+                    <li id = "artist" class = "navigation"><a class = "link" href="artist.html">Artists</a></li>
+                    <li id = "aboutus" class = "navigation"><a class = "link" href="aboutus.html">Contact us</a></li>
+                    <li id = "search" class = "navigation"><a class = "link" href = "search.html">Search</a>
+                </ul>
+            </nav>
+            <img id = "logo" src = "img/logo.webp">
+            <h1 id="try">La Musique</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Welcome to LA MUSIQUE – Your Ultimate Music Hub!</h2>
+                <div><p id = "intro">This is a site for every music lover who want to knew details of a song or artist, this site will provide you with that. If you love music as much as we do, you’re in the right place. We’re here to share everything from the latest tracks and artist stories to deep dives into genres, albums, and the moments that make music magical. Whether you’re a die-hard fan, a casual listener, or someone just looking to discover something new, we’ve got something for you.</p></div>
+
+            </section>
+            <section>
+                <nav>
+                    <ul>
+                        <li><a class = "pagelink" href="topcharts.html"><img id = "topchartpic" src = "img/topchart.webp"></a></li>
+                        <p id = "trend" class = "pageinfo">Want to know about the <b>trendy</b> songs and artists</p>
+                        <li><a  class = "pagelink" href="search.html"><img id = "musicandartistpic" src = "img/musicandartist.avif"></a></li>
+                        <p id = "search2" class = "pageinfo"><b>Search</b> for any song or an artist</p>
+                        <li><a class = "pagelink" href="aboutus.html"><img id = "aboutuspic" src = "img/aboutus.jpg"></a></li>
+                        <p id = "knowus" class = "pageinfo"><b>know about</b> us</p>
+                        
+                    </ul>
+                </nav>
+            </section>
+        </main>
+        <div id="shortcut-menu">
+            <ul>
+                <li id="option1">Top charts</li>
+                <li id="option2">Music</li>
+                <li id="option3">Artists</li>
+                <li id="option4">Search</li>
+            </ul>
+        </div>
+        <span id="message">
+            <p>YOU CAN USE <abbr>alt<abbr> + right mouse button to open a shortcut menu.</p>
+        </span>
+
+        <footer>
+            <p id = "cprt">copyright @ THE 3</p> 
+            <a href = "h">credits and references</a>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const customMenu = document.getElementById('shortcut-menu');
+                
+                // Track if Alt key is pressed
+                let isAltPressed = false;
+                
+                // Listen for Alt key press and release
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Alt') {
+                        isAltPressed = true;
+                    }
+                });
+                
+                document.addEventListener('keyup', function(e) {
+                    if (e.key === 'Alt') {
+                        isAltPressed = false;
+                    }
+                });
+                
+                // Custom context menu on Alt + right-click
+                document.addEventListener('contextmenu', function(e) {
+                    if (isAltPressed) {
+                        e.preventDefault(); // Prevent the default context menu
+                        
+                        // Position the custom menu at the mouse position
+                        customMenu.style.display = 'block';
+                        customMenu.style.left = e.pageX + 'px';
+                        customMenu.style.top = e.pageY + 'px';
+                    }
+                });
+                
+                // Hide menu when clicking elsewhere
+                document.addEventListener('click', function() {
+                    customMenu.style.display = 'none';
+                });
+                
+                // Handle menu item clicks
+                document.getElementById('option1').addEventListener('click', function() {
+                    window.location.href = 'topcharts.html';
+                    customMenu.style.display = 'none';
+                });
+                
+                document.getElementById('option2').addEventListener('click', function() {
+                    window.location.href = 'music.html';
+                    customMenu.style.display = 'none';
+                });
+                
+                document.getElementById('option3').addEventListener('click', function() {
+                    window.location.href = 'artist.html';
+                    customMenu.style.display = 'none';
+                });
+                
+                document.getElementById('option4').addEventListener('click', function() {
+                    const selection = window.getSelection().toString();
+                    if (selection) {
+                        window.open('https://www.google.com/search?q=' + encodeURIComponent(selection), '_blank');
+                    } else {
+                        alert('to be worked on ');
+                    }
+                    customMenu.style.display = 'none';
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+            const tempMessage = document.getElementById('message');
+            
+            // Function to show the message for a specific duration
+            function showTemporaryMessage(duration = 5000) {
+                // Make the message visible
+                tempMessage.style.opacity = '1';
+                
+                // Set a timer to hide it after the specified duration
+                setTimeout(function() {
+                    tempMessage.style.opacity = '0';
+                }, duration);
+            }
+            
+            // Show message automatically when the page loads
+            showTemporaryMessage();
+            });
+        </script>
+    </body>
+</html>

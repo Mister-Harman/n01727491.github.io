@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>La musique about us</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel = "stylesheet" href = "styles/style_otherpages.css">
+        <style>
+            /* to style the pop-up menu */
+            #shortcut-menu {
+                position: fixed;
+                z-index: 1000;
+                width: 200px;
+                background: white;
+                border: 1px solid #ccc;
+
+                border-radius: 3px;
+                display: none;
+            }
+            
+            #shortcut-menu ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            #shortcut-menu ul li {
+                padding: 10px 15px;
+                cursor: pointer;
+                border-bottom: 1px solid #eee;
+            }
+            
+            #shortcut-menu ul li:last-child {
+                border-bottom: none;
+            }
+            
+            #shortcut-menu ul li:hover {
+                background-color: #f79c90;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <!-- to make the header naviagtion bar -->
+            <nav>
+                <ul>
+                    <li id = "home" class = "navigation"><a class = "link" href="index.html">Home</a></li>
+                    <li id = "topchart" class = "navigation"><a class = "link" href="topcharts.html">Top Charts</a></li>
+                    <li id = "music" class = "navigation"><a class = "link" href="music.html">Music</a></li>
+                    <li id = "artist" class = "navigation"><a class = "link" href="artist.html">Artists</a></li>
+                    <li id = "search" class = "navigation"><a class = "link" href = "search.html">Search</a>
+                    <li id="favourite" class="navigation"><a class="link" href="favourite.html">Favourite List</a></li>
+                    <li id = "aboutus" class = "navigation"><a class = "link active" href="aboutus.html">Contact us</a></li>
+                </ul>
+            </nav>
+            <a href="index.html"><img id = "logo" src = "img/logo.webp" alt="logo of la musique"></a>
+            <h1>La Musique</h1>
+        </header>
+        <main>
+            <h2>Contact Us</h2>
+            <!-- the main div where the form is present -->
+            <div class="contact-container">                                  
+                <p>If you have any questions, feel free to reach out to us through the form below. We'll get back to you as soon as possible.</p>
+                <form action="message.html" method="get" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message:</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </main>
+        <!-- the shortcut menu -->
+        <div id="shortcut-menu">
+            <ul>
+                <li id="option5">Home</li>
+                <li id="option1">Top charts</li>
+                <li id="option2">Music</li>
+                <li id="option3">Artists</li>
+                <li id="option4">Accessibility</li>
+            </ul>
+        </div>
+        <footer>
+            <p id = "cprt">copyright @ THE 3</p> 
+            <a href = "creditsandreferences.html">credits and references</a>
+        </footer>
+        <script>
+            // JavaScript for pop-up menu
+            document.addEventListener('DOMContentLoaded', function() {
+                const customMenu = document.getElementById('shortcut-menu');
+                
+                // Track if Alt key is pressed
+                let isAltPressed = false;
+                
+                // Listen for Alt key press and release
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Alt') {
+                        isAltPressed = true;
+                    }
+                });
+                
+                document.addEventListener('keyup', function(e) {
+                    if (e.key === 'Alt') {
+                        isAltPressed = false;
+                    }
+                });
+                
+                // Custom context menu on Alt + right-click
+                document.addEventListener('contextmenu', function(e) {
+                    if (isAltPressed) {
+                        e.preventDefault(); // Prevent the default context menu
+                        
+                        // Position the custom menu at the mouse position
+                        customMenu.style.display = 'block';
+                        customMenu.style.left = e.clientX + 'px';
+                        customMenu.style.top = e.clientY + 'px';
+                    }
+                });
+                
+                // Hide menu when clicking elsewhere
+                document.addEventListener('click', function() {
+                    customMenu.style.display = 'none';
+                });
+                
+                // Handle menu item clicks
+                document.getElementById('option1').addEventListener('click', function() {
+                    window.location.href = 'topcharts.html';
+                    customMenu.style.display = 'none';
+                });
+                
+                document.getElementById('option2').addEventListener('click', function() {
+                    window.location.href = 'music.html';
+                    customMenu.style.display = 'none';
+                });
+                
+                document.getElementById('option3').addEventListener('click', function() {
+                    window.location.href = 'artist.html';
+                    customMenu.style.display = 'none';
+                });
+                
+                document.getElementById('option4').addEventListener('click', function() {
+                    document.body.classList.toggle('light-readable-mode');
+                    customMenu.style.display = 'none';
+                });
+
+                document.getElementById('option5').addEventListener('click', function() {
+                window.location.href = 'index.html';
+                customMenu.style.display = 'none';
+            });
+            });
+        </script>
+    </body>
+</html>

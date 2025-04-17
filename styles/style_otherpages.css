@@ -1,0 +1,355 @@
+head{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    background-color: rgb(26, 15, 15);
+    background-color: #2D2D2A;
+    margin: 0;
+}
+
+#logo{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-self: left;
+    border-radius: 10%;
+    box-shadow: 5px 5px #F4F1BB;
+    float: left;
+ }
+
+/* Navigation Styles */
+nav {
+    background-color: #4F4F44;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a.link {
+    color: #F4F1BB;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+nav a.link:hover {
+    background-color: #ED6A5A;
+    color: #F4F1BB;
+}
+
+/* Active link style */
+nav a.link.active {
+    background-color: #878472;
+    color: #F4F1BB;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+}
+
+h1{
+    color: #ED6A5A;
+    font-size: 100px;
+    font-style: oblique;
+    padding-left: 200px;
+}
+
+main h2{
+    color: #F4F1BB;
+    font-size: 40px;
+}
+
+main div h2{
+    color: black;
+}
+
+div{
+    padding: 10px;
+    background: #F4F1BB;
+    border-radius: 10px;
+    border: 7px double;
+    box-shadow: 2px 5px 20px hsl(197, 100%, 5%);
+}
+
+ /* ============================================================================= */
+/* footer styles */
+ footer {
+    background-color: #4F4F44;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(110, 69, 226, 0.3);
+}
+
+footer p#cprt {
+    color: #F4F1BB;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+footer a {
+    color: #F4F1BB;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    background-color: rgba(237, 106, 90, 0.1);
+    border: 1px solid rgba(237, 106, 90, 0.3);
+}
+
+footer a:hover {
+    background-color: rgba(237, 106, 90, 0.3);
+    color: #F4F1BB;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(237, 106, 90, 0.2);
+}
+
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    footer {
+        padding: 1.5rem 1rem;
+    }
+    
+    footer p#cprt {
+        font-size: 0.9rem;
+    }
+    
+    footer a {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+form .submit-btn{
+    margin: 2% 0;
+    font-size: 1.1em;
+    background-color: #f79c90;
+}
+
+pre {
+    white-space: pre-wrap;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+#albumArt {
+    width: 100px;
+    height: 100px;
+    float: right;
+    margin-top: 10px;
+    Margin-right: 10px;
+    border: 7px double;
+    box-shadow: 2px 5px 20px hsl(197, 100%, 5%);
+}
+#artistImage {
+    float: right;
+    width: 100px;
+    height: 100px;
+    margin-top: 1px;
+    margin-left: 10px;
+    border: 7px double;
+    box-shadow: 2px 5px 20px hsl(197, 100%, 5%);
+}
+.image-container {
+    float: right;
+    margin-top: 1px;
+    margin-left: 10px;
+    border: 7px double;
+    box-shadow: 2px 5px 20px hsl(197, 100%, 5%);
+}
+
+#searchInput {
+    height: 20px;
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #f79c90;
+    border-radius: 4px;
+}
+
+#searchButton {
+    width: 100px;
+    height: 35px;
+    padding: 10px 20px;
+    background-color: #f79c90;
+    color: #050505;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#searchInput:focus{
+    border-color: #f79c90;
+}
+
+#region{
+    font-size: 1.3em;
+}
+
+#filter {
+    width: 180px;
+    padding: 10px 20px;
+    background-color: #f79c90;
+    color: #111010;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 1.1em;
+}
+
+#chart{
+    position: inherit;
+    z-index: 2;
+}
+
+.song{
+    position: initial;
+    z-index: 3;
+}
+
+#filter:hover, #searchButton:hover {
+    background-color: #f79c90;
+}
+
+.details{
+    font-size: 1.1em;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    #logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        padding-left: 0;
+        text-align: center;
+    }
+    h1 {
+        padding-left: 20px;
+        text-align: center;
+    }
+    #logo {
+        width: 100px;
+        height: 100px;
+        float: none;
+        margin: 10px auto;
+        display: block;
+    }
+
+    .navigation {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    div {
+        margin: 10px 5px;
+    }
+
+    footer {
+        position: sticky;
+        bottom: 0;
+        margin-top: 1cm;
+        font-size: 0.8cm;
+    }
+}
+
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 40px;
+        padding-left: 10px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .navigation {
+        font-size: medium;
+    }
+
+    footer {
+        font-size: 0.7cm;
+    }
+}
+
+.light-readable-mode {
+    background-color: white !important;
+    color: #333 !important;
+}
+.light-readable-mode nav {
+    background-color: #333 !important;
+}
+.light-readable-mode nav a.link {
+    color: #f1f1f1 !important;
+}
+.light-readable-mode nav a.link:hover {
+    background-color: #f7f5f4 !important;
+    color: rgb(11, 0, 0) !important;
+}
+.light-readable-mode h1 {
+    color: #2a2a2a !important;
+}
+.light-readable-mode h2 {
+    color: #2a2a2a !important;
+}
+.light-readable-mode .contact-form input,
+.light-readable-mode .contact-form textarea {
+    background-color: #f8f8f8 !important;
+    color: #333 !important;
+    border-color: #ddd !important;
+}
+.light-readable-mode footer {
+    background-color: #333 !important;
+    color: white !important;
+}
+.light-readable-mode #chart .details, .light-readable-mode #tracks, .light-readable-mode #artists, .light-readable-mode .contact-container
+, .light-readable-mode #results{
+    font-size: 1.5em;
+}
+

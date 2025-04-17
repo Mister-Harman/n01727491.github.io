@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Credits Page Styles */
+       header, main, footer{
+        margin: 1%;
+       }
+
+       header p{
+        font-size: 2em;
+        border: 2px solid rosybrown;
+        text-align: center;
+        color: #e52e71;
+       }
+
+       header p:hover{
+        font-size: 3em;
+       }
+
+       header ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        list-style: none;
+        background-color: antiquewhite;
+        font-size: 1.5em;
+        padding: 0.5em;
+       } 
+
+       header li{
+        padding: 0.5em;
+       }
+
+       header li:hover{
+        background-color: rgb(254, 250, 250);
+       }
+
+       #logo{
+        width: 200px;
+        border: 5px ridge rosybrown;
+        border-radius: 2em;
+       }
+
+       h1{
+        font-family: cursive;
+       }
+
+       h3{
+        font-size: 2em;
+       }
+
+       body{
+        border: 2px dashed cadetblue;
+        margin: 1em;
+       }
+
+        .credits-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .credits-container section {
+            margin-bottom: 30px;
+        }
+
+        .credits-container h3 {
+            color: #6e45e2;
+            border-bottom: 2px solid #e1973c;
+            padding-bottom: 5px;
+        }
+
+        .credits-container ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .credits-container li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .credits-container a {
+            color: #e76422;
+            text-decoration: underline;
+        }
+
+        .credits-container a:hover {
+            color: #e52e71;
+        }
+
+        footer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgb(246, 154, 17);
+            align-items: center;
+        }
+
+        footer a{
+            border: 2px solid #023633;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 2%;
+        }
+
+        footer a:hover{
+            background-color: antiquewhite;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <!-- the main header navigation  -->
+        <nav>
+            <ul>
+                <li><a class="link" href="index.html">Home</a></li>
+                <!-- Other navigation items -->
+                <li><a class="link" href="creditsandreferences.html">Credits and References</a></li>
+            </ul>
+        </nav>
+        <p>THANKS FOR VISITING OUR SITE</p>
+        <a href="index.html"><img id="logo" src="img/logo.webp" alt="logo of la musique"></a>
+        <h1>La Musique</h1>
+    </header>
+
+    <main>
+        <!-- the credits and references information -->
+        <h2>Credits & References</h2>
+        <div class="credits-container">
+            <section>
+                <h3>Music Data Sources</h3>
+                <ul>
+                    <li>Spotify API - <a href="https://developer.spotify.com/documentation/web-api/" target="_blank">Official Documentation</a></li>
+                    <li>itune API - <a href="https://developer.apple.com/documentation/applemusicapi/" target="_blank">API Documentation</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Images & Media</h3>
+                <ul>
+                    <li>Website logo - Designed by our team</li>
+                    <li>Artist and song images - Sourced from Spotify artist profiles</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p id="cprt">copyright @ THE 3</p>
+        <a href="creditsandreferences.html">Credits and References</a>
+    </footer>
+</body>
+</html>
