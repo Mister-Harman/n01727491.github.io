@@ -53,8 +53,13 @@ nav a.link.active {
   nav ul {
       flex-direction: column;
       gap: 0.5rem;
-      padding: 0.5rem;
+      padding: 0.5rem;   
+      align-items: center;
   }
+  .navigation{
+    padding: 10px 0;
+  }
+
 }
 
 /* =================================================================== */
