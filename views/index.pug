@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1 Movies
+
+  form.filter-form(method="get", action="/movies")
+    input(type="text", name="q", placeholder="Search by title", value=search)
+    input(type="text", name="genre", placeholder="Filter by genre", value=genre)
+    select(name="sort")
+      option(value="newest", selected=sort === 'newest') Newest
+      option(value="oldest", selected=sort === 'oldest') Oldest
+      option(value="rating_desc", selected=sort === 'rating_desc') Rating: High → Low
+      option(value="rating_asc", selected=sort === 'rating_asc') Rating: Low → High
+      option(value="title_asc", selected=sort === 'title_asc') Title: A → Z
+    button.btn(type="submit") Apply
+
+  if movies.length
+    .movies-grid
+      each movie in movies
+        .movie-card
+          h2
+            a(href=`/movies/${movie._id}`)= movie.title
+          if movie.rating
+            p.rating Rating: #{movie.rating}/10
+          if movie.year
+            p.year Year: #{movie.year}
+          if movie.genres && movie.genres.length
+            p.genres Genres: #{movie.genres.join(', ')}
+          if movie.isStarred
+            p.starred ⭐ In your watchlist
+  else
+    p.no-results No movies found.
+
+  include partials/pagination

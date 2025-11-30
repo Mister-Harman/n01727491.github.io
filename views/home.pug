@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  if isGuest
+    h1 Welcome to CineShelf 🎬
+    p
+      | Discover and share your favourite movies. Create an account to add movies,
+      | build your watchlist, and manage your personal collection.
+
+    .home-actions
+      a.btn(href="/login") Login
+      a.btn.btn-secondary(href="/register") Create an Account
+
+    if latestMovies && latestMovies.length
+      h2(style="margin-top:1.5rem") Recently added movies
+      .movies-grid
+        each movie in latestMovies
+          .movie-card
+            h3
+              a(href=`/movies/${movie._id}`)= movie.title
+            if movie.year
+              p.year Year: #{movie.year}
+            if movie.genres && movie.genres.length
+              p.genres Genres: #{movie.genres.join(', ')}
+  else
+    h1 Hello, #{user.name} 👋
+    p
+      | Welcome back to CineShelf! Jump straight into your collection or explore new movies.
+
+    .home-actions
+      a.btn(href="/movies") Browse All Movies
+      a.btn.btn-secondary(href="/movies/new") + Add Movie
+      a.btn.btn-secondary(href="/watchlist") ⭐ Your Watchlist
+      a.btn.btn-secondary(href="/profile") Profile
+
+    if latestMovies && latestMovies.length
+      h2(style="margin-top:1.5rem") Recently added movies
+      .movies-grid
+        each movie in latestMovies
+          .movie-card
+            h3
+              a(href=`/movies/${movie._id}`)= movie.title
+            if movie.year
+              p.year Year: #{movie.year}
+            if movie.genres && movie.genres.length
+              p.genres Genres: #{movie.genres.join(', ')}

@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1 Login
+
+  if errors.length
+    ul.error-list
+      each err in errors
+        li= err.msg
+
+  form(method="post", action="/login")
+    .form-group
+      label(for="email") Email
+      input#email(type="email", name="email", required, value=values.email || '')
+    .form-group
+      label(for="password") Password
+      input#password(type="password", name="password", required)
+    button.btn(type="submit") Login
+    p
+      | Don't have an account?
+      a(href="/register") Register

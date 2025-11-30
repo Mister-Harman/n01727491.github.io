@@ -1,0 +1,7 @@
+if flash && flash.success && flash.success.length
+  each msg in flash.success
+    .alert.alert-success= msg
+
+if flash && flash.error && flash.error.length
+  each msg in flash.error
+    .alert.alert-error= msg

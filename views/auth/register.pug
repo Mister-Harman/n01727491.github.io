@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  h1 Register
+
+  if errors.length
+    ul.error-list
+      each err in errors
+        li= err.msg
+
+  form(method="post", action="/register")
+    .form-group
+      label(for="name") Name
+      input#name(type="text", name="name", required, value=values.name || '')
+    .form-group
+      label(for="email") Email
+      input#email(type="email", name="email", required, value=values.email || '')
+    .form-group
+      label(for="password") Password
+      input#password(type="password", name="password", required)
+    .form-group
+      label(for="confirmPassword") Confirm Password
+      input#confirmPassword(type="password", name="confirmPassword", required)
+    button.btn(type="submit") Create Account
+    p
+      | Already have an account?
+      a(href="/login") Login

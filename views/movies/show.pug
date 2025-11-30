@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  h1= movie.title
+
+  p.meta
+    if movie.year
+      span Year: #{movie.year} |
+    if movie.rating
+      span Rating: #{movie.rating}/10 |
+    if movie.owner && movie.owner.name
+      span Added by: #{movie.owner.name}
+
+  if movie.genres && movie.genres.length
+    p Genres: #{movie.genres.join(', ')}
+
+  p.description= movie.description
+
+  if currentUser
+    form(method="post", action=`/movies/${movie._id}/watchlist`)
+      button.btn(type="submit")
+        if isStarred
+          | ⭐ Remove from Watchlist
+        else
+          | ⭐ Add to Watchlist
+
+  if isOwner
+    hr
+    a.btn(href=`/movies/${movie._id}/edit`) Edit
+    form(method="post", action=`/movies/${movie._id}?_method=DELETE`, style="display:inline-block")
+      button.btn.btn-danger(type="submit", onclick="return confirm('Delete this movie?')") Delete

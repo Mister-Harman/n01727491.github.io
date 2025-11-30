@@ -1,0 +1,67 @@
+extends layout
+
+block content
+  if isGuest
+    h1 Welcome to CineShelf
+    p
+      | Login or register to add your own movies, build a watchlist, and personalize your experience.
+
+    a.btn(href="/login") Login
+    a.btn.btn-secondary(href="/register") Create an Account
+
+    if latestMovies && latestMovies.length
+      h2(style="margin-top:1.5rem") Recently added movies
+      .movies-grid
+        each movie in latestMovies
+          .movie-card
+            h3
+              a(href=`/movies/${movie._id}`)= movie.title
+            if movie.year
+              p.year Year: #{movie.year}
+            if movie.genres && movie.genres.length
+              p.genres Genres: #{movie.genres.join(', ')}
+  else
+    h1 Hello, #{user.name} 👋
+
+    if stats
+      .profile-stats
+        .stat-card
+          h2= stats.myMoviesCount
+          p Movies you added
+        .stat-card
+          h2= stats.watchlistCount
+          p In your watchlist
+
+    if myMovies && myMovies.length
+      h2(style="margin-top:1.5rem") Movies you added
+      .movies-grid
+        each movie in myMovies
+          .movie-card
+            h3
+              a(href=`/movies/${movie._id}`)= movie.title
+            if movie.year
+              p.year Year: #{movie.year}
+            if movie.genres && movie.genres.length
+              p.genres Genres: #{movie.genres.join(', ')}
+            p
+              a(href=`/movies/${movie._id}/edit`) Edit
+    else
+      h2(style="margin-top:1.5rem") Movies you added
+      p You haven't added any movies yet.
+      a.btn(href="/movies/new") Add your first movie
+
+    if watchlistMovies && watchlistMovies.length
+      h2(style="margin-top:1.5rem") Your watchlist
+      .movies-grid
+        each movie in watchlistMovies
+          .movie-card
+            h3
+              a(href=`/movies/${movie._id}`)= movie.title
+            if movie.year
+              p.year Year: #{movie.year}
+            if movie.genres && movie.genres.length
+              p.genres Genres: #{movie.genres.join(', ')}
+    else
+      h2(style="margin-top:1.5rem") Your watchlist
+      p Your watchlist is empty. Browse movies and click ⭐ to add them.
+      a.btn(href="/movies") Browse Movies

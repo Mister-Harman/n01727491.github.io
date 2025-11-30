@@ -1,0 +1,15 @@
+if totalPages && totalPages > 1
+  nav.pagination
+    - const queryBase = `q=${search || ''}&genre=${genre || ''}&sort=${sort || 'newest'}`
+
+    if page > 1
+      a.page-link(href=`?page=${page - 1}&${queryBase}`) « Prev
+    else
+      span.page-link.disabled « Prev
+
+    span.page-info Page #{page} of #{totalPages}
+
+    if page < totalPages
+      a.page-link(href=`?page=${page + 1}&${queryBase}`) Next »
+    else
+      span.page-link.disabled Next »

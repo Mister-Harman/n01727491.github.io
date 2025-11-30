@@ -1,0 +1,18 @@
+header.navbar
+  .container.navbar-inner
+    a.brand(href="/")
+      img.logo(src="/img/logo-movies.svg", alt="CineShelf logo")
+      span.brand-text CineShelf
+    nav
+      ul.nav-links
+        li: a(href="/movies") All Movies
+        if currentUser
+          li: a(href="/movies/new") + Add Movie
+          li: a(href="/watchlist") ⭐ Watchlist
+          li: a(href="/profile") Profile
+        else
+          li: a(href="/login") Login
+          li: a(href="/register") Register
+      if currentUser
+        form(method="post", action="/logout")
+          button.btn.btn-link(type="submit") Logout (#{currentUser.name})
